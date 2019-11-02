@@ -7,9 +7,8 @@ itsdangerous==1.1.0
 Jinja2==2.10.3
 MarkupSafe==1.1.1
 more-itertools==7.2.0
--e git+https://github.com/stevenlavelle/package_name.git@f165eb06292d1adc951c01c47ae90b8efe48066f#egg=package_name
 packaging==19.2
-pkg-resources==0.0.0
+pkg-resources>=0.0.0
 pluggy==0.13.0
 py==1.8.0
 pyparsing==2.4.2

@@ -9,8 +9,8 @@ from package_name import create_app
 @pytest.fixture
 def app():
     # create the app - add configuration
-    flask_app = create_app()
-    yield flask_app
+    app = create_app()
+    yield app
 
 
 @pytest.fixture

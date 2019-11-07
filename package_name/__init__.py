@@ -1,13 +1,15 @@
 import os
 
 from flask import Flask, render_template
+
 from config import config
+from package_name.db import db_session
 
-config_name = os.environ.get('FLASK_ENV')
-
-def create_app(config_name = 'default'):
+def create_app(config_name = None):
     """Create and configure an instance of the Flask application."""
     app = Flask("package_name", instance_relative_config=True)
+    if config_name == None:
+        config_name = os.environ.get('FLASK_ENV')
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
 
@@ -16,6 +18,10 @@ def create_app(config_name = 'default'):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+
+    @app.teardown_appcontext
+    def shutdown_session(exception=None):
+        db_session.remove()
 
     @app.route('/')
     def index():
